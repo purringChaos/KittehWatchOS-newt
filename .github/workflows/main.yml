@@ -25,6 +25,8 @@ jobs:
       
     - name: Checkout source files
       uses: actions/checkout@v2
+      with:
+        submodules: 'recursive'
 
     - name: Check cache for newt
       id:   cache-newt
@@ -46,22 +48,6 @@ jobs:
         newt/newt version
         export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt
         newt version
-
-    - name: Check cache for Mynewt source files
-      id:   cache-mynewt
-      uses: actions/cache@v2
-      env:
-        cache-name: cache-mynewt
-      with:
-        path: repos
-        key:  ${{ runner.os }}-build-${{ env.cache-name }}
-        restore-keys: ${{ runner.os }}-build-${{ env.cache-name }}
-
-    - name: Download Mynewt source files
-      if:   steps.cache-mynewt.outputs.cache-hit != 'true'  # Install mynewt if not found in cache
-      run:  |
-        export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt
-        newt upgrade -f
 
     - name: Show files
       run:  set ; pwd ; ls -l
