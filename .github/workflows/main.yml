@@ -91,10 +91,3 @@ jobs:
         name: KittehWatchOS-newt.zip
         path: bin/targets/KittehWatchOS-newt/app/apps/KittehWatchOS-newt/KittehWatchOS-newt.*
 
-    #########################################################################################
-    # Finish
-
-    - name: Find output
-      run:  |
-        find bin/targets/nrf52_boot/app/boot/mynewt -name "mynewt.*" -ls
-        find bin/targets/KittehWatchOS-newt/app/apps/KittehWatchOS-newt -name "KittehWatchOS-newt.*" -ls
