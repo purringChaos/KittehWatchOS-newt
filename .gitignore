@@ -29,3 +29,6 @@ tags
 .DS_Store
 *.swp
 *.swo
+repos/apache-mynewt-core
+repos/apache-mynewt-mcumgr
+repos/apache-mynewt-nimble
