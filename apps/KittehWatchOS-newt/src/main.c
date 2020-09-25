@@ -172,7 +172,6 @@ main(int argc, char **argv)
 
 init_backlight();
 
-pinetime_lvgl_mynewt_init();
 pinetime_lvgl_mynewt_test();
 pinetime_lvgl_mynewt_render();
     while (1) {
