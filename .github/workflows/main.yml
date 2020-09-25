@@ -25,8 +25,6 @@ jobs:
       
     - name: Checkout source files
       uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
 
     - name: Check cache for newt
       id:   cache-newt
