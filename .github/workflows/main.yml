@@ -79,10 +79,6 @@ jobs:
         name: KittehWatchOS-newt.elf
         path: bin/targets/KittehWatchOS-newt/app/apps/KittehWatchOS-newt/KittehWatchOS-newt.elf
 
-    - name: Create Application Firmware Image
-      run:  |
-        export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt:${{ runner.temp }}/arm-none-eabi/bin
-        ./scripts/nrf52/image-app.sh
     - name: Upload Application Firmware Image
       uses: actions/upload-artifact@v2
       with:
