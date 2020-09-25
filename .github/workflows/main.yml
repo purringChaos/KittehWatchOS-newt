@@ -46,6 +46,7 @@ jobs:
         newt/newt version
         export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt
         newt version
+
     - name: Check cache for Mynewt source files
       id:   cache-mynewt
       uses: actions/cache@v2
@@ -60,7 +61,7 @@ jobs:
       if:   steps.cache-mynewt.outputs.cache-hit != 'true'  # Install mynewt if not found in cache
       run:  |
         export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt
-        newt install -v -f || ls -l repos
+        newt update
 
     - name: Show files
       run:  set ; pwd ; ls -l
@@ -83,11 +84,6 @@ jobs:
         release: 9-2020-q2
         # Directory to unpack GCC to. Defaults to a temporary directory.
         directory: ${{ runner.temp }}/arm-none-eabi
-
-    - name: Get Deps
-      run:  |
-        export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt:${{ runner.temp }}/arm-none-eabi/bin
-        newt upgrade
 
     - name: Build Application Firmware
       run:  |
