@@ -61,7 +61,7 @@ jobs:
       if:   steps.cache-mynewt.outputs.cache-hit != 'true'  # Install mynewt if not found in cache
       run:  |
         export PATH=$PATH:${{ runner.temp }}/mynewt-newt/newt
-        newt update
+        newt upgrade -f
 
     - name: Show files
       run:  set ; pwd ; ls -l
