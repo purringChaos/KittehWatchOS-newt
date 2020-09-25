@@ -39,9 +39,8 @@ jobs:
     - name: Install newt
       if:   steps.cache-newt.outputs.cache-hit != 'true'  # Install newt if not found in cache
       run:  |
-        source scripts/install-version.sh
         cd ${{ runner.temp }}
-        git clone --branch $mynewt_version https://github.com/apache/mynewt-newt/
+        git clone --branch mynewt_1_7_0_tag https://github.com/apache/mynewt-newt/
         cd mynewt-newt/
         ./build.sh
         newt/newt version
