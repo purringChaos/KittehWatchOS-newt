@@ -161,7 +161,7 @@ static void disp_init(void)
  * 'lv_disp_flush_ready()' has to be called when finished. */
 static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
-    console_printf("Flush display: left=%d, top=%d, right=%d, bottom=%d...\n", area->x1, area->y1, area->x2, area->y2);
+    
     assert(area->x2 >= area->x1);
     assert(area->y2 >= area->y1);
 

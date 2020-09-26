@@ -106,6 +106,7 @@ static uint8_t flash_buffer[BATCH_SIZE];
 /// Display the image in SPI Flash to ST7789 display controller. 
 /// Derived from https://github.com/lupyuen/pinetime-rust-mynewt/blob/main/logs/spi-non-blocking.log
 int NOTUSED_display_image(void) {
+    
     int rc = pinetime_lvgl_mynewt_init_display();  assert(rc == 0);
     rc = set_orientation(Landscape);  assert(rc == 0);
 
@@ -131,6 +132,7 @@ int NOTUSED_display_image(void) {
             uint32_t offset = ((top * COL_COUNT) + left) * BYTES_PER_PIXEL;
             int rc = hal_flash_read(FLASH_DEVICE, offset, flash_buffer, len); assert(rc == 0);
 
+            //  
 
             //  Set the display window.
             rc = pinetime_lvgl_mynewt_set_window(left, top, right, bottom); assert(rc == 0);
@@ -175,6 +177,7 @@ int NOTUSED_display_image(void) {
     pinetime_lvgl_mynewt_write_data(RAMWR2_PARA, sizeof(RAMWR2_PARA));  //  40 bytes
     */
 
+    
     return 0;
 }
 
@@ -247,16 +250,13 @@ int pinetime_lvgl_mynewt_init_display(void) {
     } else {
         pinetime_lvgl_mynewt_write_command(INVOFF, NULL, 0);
     }
-    if (RGB) {
-        static const uint8_t MADCTL1_PARA[] = { 0x00 };
-        pinetime_lvgl_mynewt_write_command(MADCTL, MADCTL1_PARA, sizeof(MADCTL1_PARA));
-    } else {
-        static const uint8_t MADCTL2_PARA[] = { 0x08 };
-        pinetime_lvgl_mynewt_write_command(MADCTL, MADCTL2_PARA, sizeof(MADCTL2_PARA));
-    }
+
+    set_orientation(Landscape);
+
     static const uint8_t COLMOD_PARA[] = { 0x05 };
     pinetime_lvgl_mynewt_write_command(COLMOD, COLMOD_PARA, sizeof(COLMOD_PARA));
-    
+
+
     pinetime_lvgl_mynewt_write_command(DISPON, NULL, 0);
     delay_ms(200);
     return 0;

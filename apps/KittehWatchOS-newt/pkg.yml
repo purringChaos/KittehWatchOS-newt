@@ -30,3 +30,10 @@ pkg.deps:
     - "@apache-mynewt-core/sys/console/stub"
     - "@apache-mynewt-core/sys/log/stub"
     - "libs/pinetime_lvgl_mynewt"
+
+
+pkg.cflags:
+    - -DLV_CONF_INCLUDE_SIMPLE 
+    - -Ilibs/pinetime_lvgl_mynewt
+    - -DFLOAT_SUPPORT  
+    - -w
